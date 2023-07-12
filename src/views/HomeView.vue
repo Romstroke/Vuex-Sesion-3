@@ -7,11 +7,13 @@
     </div>
     <div class="categorias">
         <h2>Categorias</h2>
+        <p>Numeros de Albunes({{countAll}})</p>
         <div class="btn_container">
-          <button @click="redirectTo('/pop')">Pop</button> <!-- otra forma: @click="$router.push('/pop')" -->
-          <button @click="redirectTo('/rock')">Rock</button>
-          <button @click="redirectTo('/rap')">Rap</button>
+          <button @click="redirectTo('/pop')">Pop({{popCount}})</button> <!-- otra forma: @click="$router.push('/pop')" -->
+          <button @click="redirectTo('/rock')">Rock({{rockCount}})</button>
+          <button @click="redirectTo('/rap')">Rap({{rapCount}})</button>
         </div>
+        <AlbumAdd/>
     </div>
   </div>
 </template>
@@ -19,11 +21,16 @@
 <script>
 // @ is an alias to /src
 
+import {mapGetters} from 'vuex'
+import AlbumAdd from '../components/AlbumAdd.vue'
 
 export default {
   name: 'HomeView',
   components: {
-   
+    AlbumAdd   
+  },
+  computed:{
+    ...mapGetters(['popCount', 'rockCount', 'rapCount', 'countAll'])
   },
   methods:{
     redirectTo(ruta){

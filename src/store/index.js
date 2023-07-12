@@ -193,10 +193,39 @@ export default new Vuex.Store({
         ],
   },
   getters: {
+    popCount: function(state) {
+      return state.pop.length
+    },
+    rockCount: function(state) {
+      return state.rock.length
+    },
+    rapCount: function(state) {
+      return state.rap.length
+    },
+    countAll: function(state, getters){
+      return getters.popCount + getters.rockCount + getters.rapCount
+    }
+
+
+    
   },
   mutations: {
+    ADD_ALBUM: function(state, album){
+      if(album.category == 'rock'){
+        state.rock.push(album)
+      }
+      else if(album.category == 'pop'){
+        state.pop.push(album)
+      }
+      else if(album.category == 'rap'){
+        state.rap.push(album)
+      }
+    }
   },
   actions: {
+    add_album({commit},album){
+      commit('ADD_ALBUM',album)
+    }
   },
   modules: {
   }
